@@ -1,5 +1,5 @@
 <template>
-    <div>111</div>
+  <div>DiaologDemo</div>
 </template>
 
 <script lang="ts">
