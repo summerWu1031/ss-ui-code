@@ -1,15 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
+import './index.scss'
 import {createWebHashHistory,createRouter} from  'vue-router'
-import Sum from './components/Sum.vue'
-import Sum2 from './components/Sum2.vue'
+import Home from './components/views/Home.vue'
+import Doc from './components/views/Doc.vue'
 
 const history = createWebHashHistory()
 const router = createRouter({
     history:history,
-    routes:[{path:'/', component:Sum},
-        {path:'/xxx',component:Sum2}]
+    routes:[{path:'/', component:Home},
+        {path:'/doc',component:Doc}]
 })
 
 const app = createApp(App)

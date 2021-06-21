@@ -1,13 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <router-view/>
 </template>
 
-<script>
-
-
+<script lang="ts">
+import {ref,provide} from 'vue'
 export default {
   name: 'App',
-
+  setup(){
+    const width = document.documentElement.clientWidth
+    const asideVisible = ref(width<=500? false : true)
+    provide('asideVisible',asideVisible)
+  }
 }
 </script>
