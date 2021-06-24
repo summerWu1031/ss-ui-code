@@ -11,8 +11,9 @@ import {ref} from 'vue';
 
 export default {
   props: {
-    value: Boolean
+    value: Boolean,
   },
+
   setup(props, context){
     const toggle = ()=>{
       context.emit('update:value', !props.value)
@@ -29,24 +30,37 @@ export default {
     height: $h; 
     width: $h*2;
     border: none;
-    background-color: gray;
+    background-color: #bfbfbf;
     border-radius: $h/2;
     position: relative;
+    >span{
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: $h2;
+        height: $h2;
+        background-color: #fff;
+        border-radius: $h2/2;
+        transition: all 250ms;
+    }
+    &.checked{
+      background-color: rgb(77,116,242) ;
+      >span{
+        left: calc(100% - #{$h2} - 2px);
+      }
+    }
+    &:active{
+      >span{
+        width: $h2+4px;
+      }
+    }
+    &.checked:active{
+      >span{
+        width: $h2+4px;
+        margin-left: -4px;
+      }
+    }
   }
-  button.checked >span{
-    left: calc(100% - #{$h2} - 2px);
-  }
-  button.checked{
-    background-color: rgb(77,116,242) ;
 
-  }
-  span{
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: $h2;
-    height: $h2;
-    background-color: #fff;
-    border-radius: $h2/2;
-  }
+
 </style>
