@@ -1,6 +1,6 @@
 <template>
     <div>
-      <button :class="{checked:value}" @click="toggle">
+      <button class="ss-switch" :class="{checked:value}" @click="toggle">
         <span></span>
       </button>
     </div>
@@ -23,10 +23,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
   $h:22px;
   $h2:$h - 4px;
-  button{
+  .ss-switch{
     height: $h; 
     width: $h*2;
     border: none;
