@@ -1,24 +1,27 @@
 <template>
-  <template v-if="visible">
-    <div class="ss-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="ss-dialog-wrapper">
-      <div class="ss-dialog">
-        <header>
-          <slot name="title"/>
-          <div class="ss-dialog-close-wrapper">
-            <span class="ss-dialog-close" @click="close">x</span>
-          </div>
-        </header>
-        <main>
-          <slot name="content"/>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+  <Teleport to="body">
+    <template v-if="visible">
+      <div class="ss-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="ss-dialog-wrapper">
+        <div class="ss-dialog">
+          <header>
+            <slot name="title"/>
+            <div class="ss-dialog-close-wrapper">
+              <span class="ss-dialog-close" @click="close">x</span>
+            </div>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
-  </template>
+    </template>
+  </Teleport>
+
 </template>
 <script lang="ts">
 import Button from './Button.vue';
@@ -56,7 +59,9 @@ export default {
       }
     }
     const cancel =()=>{
-       close()
+      if(props.cancel && props.cancel() !== false){
+        close()
+      }
     }
     return{close,onClickOverlay,ok,cancel}
   }
