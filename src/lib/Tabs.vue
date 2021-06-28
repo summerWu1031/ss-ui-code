@@ -1,6 +1,6 @@
 <template>
   <div class="ss-tabs">
-    <div class="ss-tabs-nav">
+    <div class="ss-tabs-nav" ref="container">
       <!-- 如果当前元素存在，则navItems的第index个=当前元素-->
       <div class="ss-tabs-nav-item"
            v-for="(t,index) in titles" :key="index"
@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Tab from './Tab.vue';
-import {computed, ref, onMounted} from 'vue';
+import {computed, ref, onMounted,onUpdated} from 'vue';
 
 export default {
   props: {
@@ -33,14 +33,21 @@ export default {
     //获取v-for里面的所有div
     const navItems = ref<HTMLDivElement[]>([]);
     const indicator = ref(null)
-    onMounted(() => {
+    const container = ref(null)
+    const x = ()=>{
       const divs = navItems.value;
       //获取有class为selected的div
       const result = divs.filter(div => div.classList.contains('selected'))[0];
       // const width = result.getBoundingClientRect().width
       const {width} = result.getBoundingClientRect()
       indicator.value.style.width=width+ 'px'
-    });
+      const {left:left1} = container.value.getBoundingClientRect()
+      const {left:left2} = result.getBoundingClientRect()
+      const left = left2 - left1
+      indicator.value.style.left= left + 'px'
+    }
+    onMounted(x); //只在第一次的时候出现
+    onUpdated(x)
 
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
@@ -68,7 +75,8 @@ export default {
       current,
       select,
       navItems,
-      indicator
+      indicator,
+      container
     };
   }
 };
@@ -106,6 +114,7 @@ $border-color: #d9d9d9;
       left: 0;
       bottom: -1px;
       width: 100px;
+      transition: all 250ms;
     }
   }
 
