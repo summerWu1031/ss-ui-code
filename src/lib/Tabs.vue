@@ -4,7 +4,7 @@
       <!-- 如果当前元素存在，则navItems的第index个=当前元素-->
       <div class="ss-tabs-nav-item"
            v-for="(t,index) in titles" :key="index"
-           :ref="el => { if (t=== selected) selectedItem = el }"
+           :ref="el => {  if (t===selected) selectedItem = el }"
            @click="select(t)"
            :class="{selected: t=== selected}"> {{ t }}
       </div>
@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Tab from './Tab.vue';
-import {computed, ref, onMounted,onUpdated} from 'vue';
+import {computed, ref,  onMounted, watchEffect} from 'vue';
 
 export default {
   props: {
@@ -32,31 +32,41 @@ export default {
   setup(props, context) {
     //获取v-for里面的所有div
     const selectedItem = ref<HTMLDivElement>(null);
-    const indicator = ref<HTMLDivElement>(null)
-    const container = ref<HTMLDivElement>(null)
-    const x = ()=>{
-      // const width = result.getBoundingClientRect().width
-      const {width} = selectedItem.value.getBoundingClientRect()
-      indicator.value.style.width=width+ 'px'
-      const {left:left1} = container.value.getBoundingClientRect()
-      const {left:left2} = selectedItem.value.getBoundingClientRect()
-      const left = left2 - left1
-      indicator.value.style.left= left + 'px'
-    }
-    onMounted(x); //只在第一次的时候出现
-    onUpdated(x)
+    const indicator = ref<HTMLDivElement>(null);
+    const container = ref<HTMLDivElement>(null);
+
+    onMounted(()=>{
+      //watchEffect在挂载前就会运行，所以需要先挂载再wactchEffect，不然selectedItem.value为null会报错
+      //watchEffect挂载前，挂载中，更新时都会出现
+      watchEffect(()=>{
+        // const width = result.getBoundingClientRect().width
+        const {width} = selectedItem.value.getBoundingClientRect();
+        indicator.value.style.width = width + 'px';
+        const {left: left1} = container.value.getBoundingClientRect();
+        const {left: left2} = selectedItem.value.getBoundingClientRect();
+        const left = left2 - left1;
+        indicator.value.style.left = left + 'px';
+      })
+    });
+    // 另一种解决方法 用if判断，不为null再执行
+    // watchEffect(()=>{
+    //   if(selectedItem.value && indicator.value){
+    //     // const width = result.getBoundingClientRect().width
+    //     const {width} = selectedItem.value.getBoundingClientRect();
+    //     indicator.value.style.width = width + 'px';
+    //     const {left: left1} = container.value.getBoundingClientRect();
+    //     const {left: left2} = selectedItem.value.getBoundingClientRect();
+    //     const left = left2 - left1;
+    //     indicator.value.style.left = left + 'px';
+    //   }
+    // })
+
 
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
         throw new Error('Tabs 子标签必须是 Tab');
       }
-    });
-    const current = computed(() => {
-      console.log('重新 return');
-      return defaults.filter((tag) => {
-        return tag.props.title === props.selected;
-      })[0];
     });
     const titles = defaults.map((tag) => {
       return tag.props.title;
@@ -69,7 +79,6 @@ export default {
     return {
       defaults,
       titles,
-      current,
       select,
       selectedItem,
       indicator,
