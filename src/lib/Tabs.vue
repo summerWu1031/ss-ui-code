@@ -12,8 +12,7 @@
     </div>
     <div class="ss-tabs-content">
       <component class="ss-tabs-content-item"
-                 :class="{selected: c.props.title === selected }"
-                 v-for="c in defaults" :is="c"/>
+                 :is="current" :key="current.props.title"/>
 
     </div>
   </div>
@@ -74,7 +73,9 @@ export default {
     const select = (title: string) => {
       context.emit('update:selected', title);
     };
-
+    const current = computed(() => {
+      return defaults.filter(tag => tag.props.title === props.selected)[0]
+    });
 
     return {
       defaults,
@@ -82,7 +83,8 @@ export default {
       select,
       selectedItem,
       indicator,
-      container
+      container,
+      current
     };
   }
 };
@@ -126,14 +128,6 @@ $border-color: #d9d9d9;
 
   &-content {
     padding: 8px 0;
-
-    &-item {
-      display: none;
-
-      &.selected {
-        display: block;
-      }
-    }
   }
 
 }
