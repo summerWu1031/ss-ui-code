@@ -18,7 +18,10 @@ console.log(context.emit)
 }
 }
 ~~~
-
+### 用JS获取插槽内容
+~~~vue
+const defaults = context.slots.default()
+~~~
 ### context.slots.default()确认运行时子组件的类型
 ~~~vue
 //  TagsDemo

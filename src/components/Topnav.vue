@@ -1,9 +1,10 @@
 <template>
   <div class="topnav">
-    <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
-      <use xlink:href="#icon-yincangmulu"></use>
-    </svg>
-    <div class="logo" >LOGO</div>
+    <div class="logo">
+      <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
+        <use xlink:href="#icon-gongju"></use>
+      </svg>
+    </div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -25,8 +26,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$color: #007974;
 .topnav {
-  background: pink;
+  color: $color;
   display: flex;
   padding: 16px;
   position: fixed;
@@ -39,6 +41,10 @@ export default {
   > .logo {
     max-width: 6em;
     margin-right: auto;
+    >svg {
+      width: 32px;
+      height: 32px;
+    }
   }
   > .menu {
     display: flex;
@@ -48,32 +54,30 @@ export default {
       margin: 0 1em;
     }
   }
+  >.toggleAside {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
 }
-.toggleAside {
-  display: none;
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+
 @media (max-width: 500px) {
   .topnav {
     >.menu{
       display: none;
     }
-    >.logo{
-      margin: 0 auto;
-    }
+    //>.logo{
+    //  margin: 0 auto;
+    //}
     >.toggleAside{
       display: inline-block;
     }
   }
 
 }
-.icon {
-  width: 1.5em; height: 1.5em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
+
 </style>
