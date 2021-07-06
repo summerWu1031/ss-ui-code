@@ -12,7 +12,7 @@
       <li>
         <router-link to="/">
           <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
-            <use xlink:href="#icon-light"></use>
+            <use xlink:href="#icon-home"></use>
           </svg>
         </router-link>
       </li>
