@@ -1,13 +1,21 @@
 <template>
-  <div class="topnav">
-    <div class="logo">
+  <div class="topnav" >
+    <div class="logo"  >
       <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
         <use xlink:href="#icon-gongju"></use>
       </svg>
     </div>
     <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+      <li class="doc">
+        <router-link to="/doc">文档</router-link>
+      </li>
+      <li>
+        <router-link to="/">
+          <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
+            <use xlink:href="#icon-light"></use>
+          </svg>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -44,6 +52,10 @@ $color: #007974;
     >svg {
       width: 32px;
       height: 32px;
+      &:hover {
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+      }
     }
   }
   > .menu {
@@ -68,7 +80,9 @@ $color: #007974;
 @media (max-width: 500px) {
   .topnav {
     >.menu{
-      display: none;
+      >.doc{
+        display: none;
+      }
     }
     //>.logo{
     //  margin: 0 auto;
