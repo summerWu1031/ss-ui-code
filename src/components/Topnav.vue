@@ -1,8 +1,8 @@
 <template>
   <div class="topnav" >
-    <div class="logo"  >
+    <div class="logo" v-if="home" >
       <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
-        <use xlink:href="#icon-gongju"></use>
+        <use xlink:href="#icon-tool"></use>
       </svg>
     </div>
     <ul class="menu">
@@ -23,7 +23,12 @@
 import {inject, Ref} from 'vue'
 
 export default {
-
+  props:{
+    home:{
+      type:Boolean,
+      default:true
+    }
+  },
   setup(){
     const asideVisible = inject<Ref<boolean>>('asideVisible')
     const toggleMenu = ()=>{
@@ -36,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 $color: #007974;
 .topnav {
-  color: $color;
+  color: #61f6f9;
   display: flex;
   padding: 16px;
   position: fixed;
@@ -44,7 +49,7 @@ $color: #007974;
   left: 0;
   width: 100%;
   z-index: 10;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   > .logo {
     max-width: 6em;
@@ -62,8 +67,17 @@ $color: #007974;
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
+    justify-content: right;
     > li {
       margin: 0 1em;
+      &.doc{
+        background-color: rgba(112, 158, 255,0.8);
+        border-radius: 24px;
+        padding:2px 18px;
+        color: #fff;
+        font-size: 14px;
+        line-height: 24px;
+      }
     }
   }
   >.toggleAside {
@@ -80,9 +94,9 @@ $color: #007974;
 @media (max-width: 500px) {
   .topnav {
     >.menu{
-      >.doc{
-        display: none;
-      }
+      //>.doc{
+      //  display: none;
+      //}
     }
     //>.logo{
     //  margin: 0 auto;
