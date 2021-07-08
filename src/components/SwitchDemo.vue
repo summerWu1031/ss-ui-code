@@ -4,7 +4,7 @@
     <div class="demo">
       <h2>常规用法</h2>
       <div class="demo-component">
-        <Switch1/>
+        <Component :is="Switch1"/>
       </div>
       <div class="demo-actions">
         <Button @click="toggle1">查看代码</Button>
@@ -16,7 +16,7 @@
     <div class="demo">
       <h2>支持 disabled </h2>
       <div class="demo-component">
-        <Switch v-model:value="bool" disabled />
+        <Component :is="Switch2"/>
       </div>
       <div class="demo-actions">
         <Button @click="toggle2">查看代码</Button>
@@ -34,10 +34,10 @@ import Button from '../lib/Button.vue'
 import {ref} from 'vue';
 import Switch1 from './Switch1.demo.vue'
 import Switch2 from './Switch2.demo.vue'
-import Intro from '../markdown/intro.md'
+
 
 export default {
-  components: {Switch2, Switch1, Switch,Button},
+  components: {Switch,Button},
   setup(){
     const bool = ref(false)
     const button1 = ref(false)
