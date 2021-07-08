@@ -1,4 +1,4 @@
-<template>
-  <Markdown path="../markdown/install.md"/>
-</template>
+<!--<template>-->
+<!--  <Markdown path="../markdown/install.md"/>-->
+<!--</template>-->
 

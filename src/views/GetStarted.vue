@@ -1,3 +1,3 @@
-<template>
- <Markdown path="../markdown/get-started.md"/>
-</template>
+<!--<template>-->
+<!-- <Markdown path="../markdown/get-started.md"/>-->
+<!--</template>-->

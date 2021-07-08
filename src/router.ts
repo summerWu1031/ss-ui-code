@@ -9,7 +9,8 @@ import TagsDemo from './components/TagsDemo.vue'
 import Intro from './views/Intro.vue';
 import GetStarted from './views/GetStarted.vue'
 import Install from './views/Install.vue'
-
+import {h} from 'vue';
+import Markdown from '../src/components/Markdown.vue'
 const history = createWebHashHistory()
 export const router = createRouter({
     history: history,
@@ -19,9 +20,9 @@ export const router = createRouter({
             path: '/doc', component: Doc,
             children: [
                 {path:'',component:DocDemo},
-                { path: "intro", component: Intro },
-                { path: "get-started", component: GetStarted },
-                { path: "install", component: Install },
+                { path: "intro", component: h(Markdown,{path:'../markdown/intro.md',key:'1'}) },
+                { path: "get-started", component: h(Markdown, {path:"../markdown/get-started.md",key:'2'})},
+                { path: "install", component: h(Markdown,{path:'../markdown/install.md',key:'23'}) },
                 {path: 'switch', component: SwitchDemo},
                 {path:'button',component:ButtonDemo},
                 {path:'dialog',component:DialogDemo},
