@@ -10,7 +10,7 @@
               <router-link to="/doc">开始</router-link>
             </p>
           </div>
-          <img src="../assets/点赞收藏.png" alt="">
+          <img src="../assets/backgroundImg.png" alt="">
         </div>
         <div class="features">
           <ul>
@@ -69,19 +69,28 @@ $border-radius: 4px;
 
 .features {
   margin: 32px auto;
-  width: 100%;
+  padding: 0 16px;
   @media (min-width: 800px) {
     width: 800px;
+    >ul {
+      >li {
+        width: 50%;
+      }
+    }
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    >ul {
+      >li {
+        width: 33.3333%;
+      }
+    }
   }
 
   > ul {
     display: flex;
     flex-wrap: wrap;
     >li{
-      width: 400px;
       margin: 16px 0;
       display: grid;
       grid-template-columns: 80px auto;

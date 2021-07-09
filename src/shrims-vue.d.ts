@@ -1,3 +1,5 @@
+import {ComponentOptions} from 'vue';
+
 declare  module  '*.vue'{
     import {ComponentOptions} from  'vue'
     const componentOptions:ComponentOptions
@@ -6,4 +8,8 @@ declare  module  '*.vue'{
 declare module "*.svg" {
     const content: any;
     export default content;
+}
+declare  module  '*.md'{
+    const str:string
+    export default str
 }
