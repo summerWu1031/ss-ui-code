@@ -1,7 +1,7 @@
 <template>
   <h1>Dialog示例</h1>
-  <Demo :component="Dialog1Demo" title=" 常规使用" />
-  <Demo :component="Dialog2Demo" title="一键打开 Dialog"/>
+  <Demo :component="Dialog1Demo"  />
+  <Demo :component="Dialog2Demo" />
 </template>
 
 <script lang="ts">

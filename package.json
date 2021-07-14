@@ -1,11 +1,10 @@
 {
   "name": "ss-ui-1031",
-  "version": "0.0.3",
+  "version": "0.0.8",
   "files": [
     "dist/lib/*"
   ],
   "main": "dist/lib/ss.js",
-  "module": "dist/lib/ss.esm.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

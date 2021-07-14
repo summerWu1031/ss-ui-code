@@ -8,7 +8,7 @@ import { terser } from "rollup-plugin-terser"
 
 export default {
     input: 'src/lib/index.ts',
-    output: [{
+    output: {
         globals: {
             vue: 'Vue'
         },
@@ -16,12 +16,7 @@ export default {
         file: 'dist/lib/ss.js',
         format: 'umd',
         plugins: [terser()]
-    }, {
-        name: 'ss-ui-1031',
-        file: 'dist/lib/ss.esm.js',
-        format: 'es',
-        plugins: [terser()]
-    }],
+    },
     plugins: [
         scss({ include: /\.scss$/, sass: dartSass }),
         esbuild({
@@ -34,3 +29,6 @@ export default {
         })
     ],
 }
+
+
+

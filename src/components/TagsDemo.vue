@@ -1,6 +1,6 @@
 <template>
-  <h1>TagsDemo</h1>
-  <Demo :component="Tabs1Demo" title="常规使用"/>
+  <h1>Tabs 示例</h1>
+  <Demo :component="Tabs1Demo" />
 </template>
 
 <script lang="ts">

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <button class="ss-switch" :class="{checked:value}" @click="toggle">
+      <button class="ss-switch" :class="{checked:value}" @click="toggle" :disabled="disabled">
         <span></span>
       </button>
     </div>
@@ -12,6 +12,10 @@ import {ref} from 'vue';
 export default {
   props: {
     value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context){
