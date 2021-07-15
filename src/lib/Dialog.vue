@@ -53,7 +53,7 @@ export default {
         close()
       }
     }
-    const ok = ()=>{
+    const  ok = ()=>{
       if(props.ok && props.ok() !== false){
         close()
       }
