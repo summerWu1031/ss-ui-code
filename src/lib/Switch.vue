@@ -1,6 +1,6 @@
 <template>
     <div>
-      <button class="ss-switch" :class="{checked:value}" @click="toggle" :disabled="disabled">
+      <button class="ss-switch" :class="{checked:value,'disabled':disabled}" @click="toggle" :disabled="disabled">
         <span></span>
       </button>
     </div>
@@ -47,8 +47,16 @@ export default {
         border-radius: $h2/2;
         transition: all 250ms;
     }
+    &.disabled{
+      :hover{
+        cursor: not-allowed;
+      }
+      :active{
+
+      }
+    }
     &.checked{
-      background-color: rgb(77,116,242) ;
+      background-color: rgba(77,116,242,0.5) ;
       >span{
         left: calc(100% - #{$h2} - 2px);
       }

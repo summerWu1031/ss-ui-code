@@ -1,5 +1,5 @@
 <template>
-  <div class="topnav" >
+  <div class="topnav" :class="{'bgc':home}">
     <div class="logo" v-if="home" >
       <svg class="icon toggleAside" aria-hidden="true" @click="toggleMenu" >
         <use xlink:href="#icon-tool"></use>
@@ -51,6 +51,9 @@ $color: #007974;
   z-index: 10;
   justify-content: space-between;
   align-items: center;
+  &.bgc{
+    background-color: #fff;
+  }
   > .logo {
     max-width: 6em;
     margin-right: auto;

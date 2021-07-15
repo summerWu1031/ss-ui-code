@@ -1,28 +1,26 @@
-### Vue 3 属性绑定
-1. 默认所有属性都绑定到根元素
-2. 使用 inheritAttrs: false 可以取消默认绑定
-3. 使用 $attrs 或者 context.attrs 获取所有属性
-4. 使用 v-bind="$attrs" 批量绑定属性
+### vue3中的context.attrs对比props
 ~~~vue
 <template>
-  <div :size="size">
-    <button v-bind="$attrs"> 批量绑定属性，所有的属性都会继承到button上面
+  <div >
+    <button >
       <slot/>
     </button>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  inheritAttrs:false ,
-  //父组件的所有属性会继承到根标签上即为在这里的div
-  //设置继承属性false则任何标签都不会继承属性
-}
-</script>
 ~~~
+使用该组件
+~~~vue
+<Button @click="xxx" @focus="yyy" size="small">I'm button</Button>
+~~~
+以上例子中，click、focus事件的作用范围是组件的根结点`<div>`，而通常，我们是想在`<button>`上绑定事件。
 
-5. 使用 const {size, level, ...xxx} = context.attrs 将属性分开
-
+所以要取消事件，然后再手动绑定到`<button>`上。
+1. 的选项中设置：`inheritAttrs:false `,取消所有继承
+2. 手动绑定到想要绑定的组件某元素上， 即：
+`<div><button v-bind="$attrs"></button></div>`
+3. $attrs=context.attrs
+4. 可以分离不同属性，到对应的节点
+如下面代码div 继承size, button继承其余的属性
 ~~~vue
 <template>
   <div :size="size">
@@ -44,4 +42,14 @@ export default {
 }
 </script>
 ~~~
+
+* 总结
+1. 对于属性size而言，如果在组件中props声明过size，那么$attrs里就不会出现size了。
+
+2. props 是父类向子类传递并且需要子类主动接收的属性
+
+3. props不包含事件；
+4. $attrs 默认是父类传递到子类根元素的属性，子类不用主动接收，会直接放在子类根元素上。 而$attrs 的这种默认行为，可以通过设置inheritAttrs:false，这些默认行为将会被取消。
+
+
 

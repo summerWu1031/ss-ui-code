@@ -47,8 +47,13 @@ export default {
         flush: 'post'
       })
     })
+
     const defaults = context.slots.default()
+   const com = context.attrs
+
     defaults.forEach((tag) => {
+      console.log(defaults);
+      console.log(com);
       // @ts-ignore
       if (tag.type.name !== Tab.name) {
         throw new Error('Tabs 子标签必须是 Tab')

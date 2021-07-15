@@ -1,4 +1,4 @@
-### 如果在tszhong 引用svg标签
+### 如何在js/ts 中引用svg标签
 1. 在shrims-vue.d.ts文件中加入,否在无法import svg文件
 ~~~
 declare module "*.svg" {
